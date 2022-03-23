@@ -1,6 +1,6 @@
 # Calculator in C
 
-This is a simple challenge made by @MrTaiko314 for me and it aimed to serve as a little warming up before getting into the study of Data Structures and Algorithms.
+This is a simple challenge made by [@MrTaiko314](https://github.com/MrTaiko314) for me and it aimed to serve as a little warming up before getting into the study of Data Structures and Algorithms.
 
 The main idea was quite simple: to make the calculator work by parsing a single string expression that contains two natural numbers and one operand, instead of getting the user input for every number and operand.
 
