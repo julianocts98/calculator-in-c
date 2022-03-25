@@ -5,7 +5,6 @@ enum Type {INVALID = 0, OPERATOR = 1, VALUE = 2};
  * Returns a power operation from a a `base` and an `expoent`.
  ******************************************************************************/
 int power(int base, int expoent);
-int isValidChar(char args);
 /*******************************************************************************
  * Returns an int enum that represents whether the received token is a VALUE, an
  * OPERATOR or an INVALID token, such as a letter or a whitespace.
@@ -128,18 +127,6 @@ int getTypeOfChar(char expressionChar){
         }
     }
     return INVALID;
-}
-
-int isValidChar(char expressionChar){
-    //NO LONGER USED FUNCTION
-    char ACCEPTED_CHARS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
-    int isValidChar = 0;
-    for (int i = 0; i < sizeof(ACCEPTED_CHARS); i++){
-        if (expressionChar == ACCEPTED_CHARS[i]){
-            isValidChar = 1;
-        }
-    }
-    return isValidChar;
 }
 
 int getStringLength(char *p){
