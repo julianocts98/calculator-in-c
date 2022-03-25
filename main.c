@@ -48,10 +48,7 @@ float getOperationResultByParsedExpression(char parsedExpression[][100]);
  ******************************************************************************/
 int getNumberByString(char string[]);
 
-
-int main(int argc, char *argv[])
-{
-    if (argc == 2){
+//11111*11111 why doesn't it work
         char parsedExpression[3][100];
         getParsedExpression(argv[1], parsedExpression);
         printf("Result: %0.2f", getOperationResultByParsedExpression(parsedExpression));
@@ -64,12 +61,14 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+//REFACTOR
+//try to work with conditions and arithmetics dealing with char : '1' - '0' = 49 - 48 = 1;
 int getDigitByChar(char numChar){
     return ((int)numChar >= 48 && (int)numChar <=57) ? (int)numChar-48 : -1;
 }
 
-int getParsedExpression(char *expression, char parsedExpression[][100])
-{
+//REFACTOR
+//returns int but the return is never used
     int startingIdx = -1;
     int endingIdx = -1;
     int expressionLength = getStringLength(expression);
@@ -82,6 +81,7 @@ int getParsedExpression(char *expression, char parsedExpression[][100])
         char nextChar = expression[i+1];
         int typeOfNextChar = getTypeOfChar(nextChar);
 
+        //TODO check what happens if more than 3 tokens in arguments of the expression
         if(startingIdx == -1 && typeOfActualChar != INVALID){
             startingIdx = i;
             if(typeOfNextChar != typeOfActualChar){
@@ -135,8 +135,7 @@ int getTypeOfChar(char expressionChar){
 
 }
 
-int isValidChar(char expressionChar)
-{
+    //NO LONGER USED FUNCTION
     char ACCEPTED_CHARS[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
     int isValidChar = 0;
     for (int i = 0; i < sizeof(ACCEPTED_CHARS); i++)
@@ -168,6 +167,7 @@ int power(int base, int expoent){
     }
 }
 
+//REFACTOR
 int getNumberByString(char string[]){
     int number = 0;
     int length = getStringLength(string);
@@ -180,6 +180,7 @@ int getNumberByString(char string[]){
     return result;
 }
 
+//study for 11111*11111;
 float getOperationResultByParsedExpression(char parsedExpression[][100]){
     int firstValue = getNumberByString(parsedExpression[0]);
     char operand = parsedExpression[1][0];
