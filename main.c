@@ -1,8 +1,13 @@
 #include "main.h"
+#include "tests.h"
 
 //11111*11111 why doesn't it work
 int main(int argc, char *argv[]){
     if (argc == 2){
+        if (compareString(argv[1], "-t")){
+            testSuite();
+            return 0;
+        }
         char parsedExpression[3][100];
         getParsedExpression(argv[1], parsedExpression);
         printf("Result: %0.2f", getOperationResultByParsedExpression(parsedExpression));
