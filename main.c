@@ -119,10 +119,10 @@ int getNumberByString(char *string){
 //study for 11111*11111;
 float getOperationResultByParsedExpression(char parsedExpression[][100]){
     int firstValue = getNumberByString(parsedExpression[0]);
-    char operand = parsedExpression[1][0];
+    char operator = parsedExpression[1][0];
     int secondValue = getNumberByString(parsedExpression[2]);
 
-    switch (operand){
+    switch (operator){
         case '+':
             return firstValue + secondValue;
         case '-':
