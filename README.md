@@ -2,7 +2,7 @@
 
 This is a simple challenge made by [@MrTaiko314](https://github.com/MrTaiko314) for me and it aimed to serve as a little warming up before getting into the study of Data Structures and Algorithms.
 
-The main idea was quite simple: to make the calculator work by parsing a single string expression that contains two natural numbers and one operand, instead of getting the user input for every number and operand.
+The main idea was quite simple: to make the calculator work by parsing a single string expression that contains two natural numbers and one operator, instead of getting the user input for every number and operator.
 
 I also decided to not use any other lib besides **stdio.h**, though this really made things harder as I may explain next.
 
@@ -21,13 +21,19 @@ In the end, to be able to use a simple **switch** for solving the operation, I a
 
 ---
 
-Compile the **main.c** file and run the **.exe** file passing the expression argument as an string.
+### Compiling using **GCC**:
 
-Example:
+1. Run `gcc -c main.c tests.c` to generate both `main.o` and `tests.o` files.
+2. Compile them to an executable by running `gcc -o main.exe main.o tests.o`
+3. Run `main.exe` passing either a string between parenthesis as an math expresion or the `-t` argument to run the test suite.
 
-Let's say you compiled `main.c` into an `a.exe` file in your folder.
-You would just run: `a.exe "A O B"`, where **A** and **B** are both natural numbers, and **O** is the operand.
-The only operands available are
+### Example:
+
+Just run: `main.exe "A O B"`, where **A** and **B** are both natural numbers, and **O** is the operator.
+
+For a literal example: `main.exe "1+2"` should print the result `3`.
+
+The only operators available are
 
 - `+` -> add
 - `-` -> subtract
