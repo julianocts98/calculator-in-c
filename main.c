@@ -147,7 +147,7 @@ int power(int base, int expoent){
 }
 
 //REFACTOR
-int getNumberByString(char string[]){
+int getNumberByString(char *string){
     int number = 0;
     int length = getStringLength(string);
     int result = 0;
