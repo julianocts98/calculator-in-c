@@ -81,8 +81,7 @@ void testGetNumberByString(){
     testCaseGetNumberByString("\"150\" is 150", "150",150);
     testCaseGetNumberByString("\"951516512\" is 951516512", "951516512", 951516512);
     testCaseGetNumberByString("\"0\" is 0", "0", 0);
-    testCaseGetNumberByString("\"abcde\" is -1", "abcde", -1); //refactor needed so any string != number = -1;
-    printf("--------------------------------------\n");
+    testCaseGetNumberByString("\"abcde\" is -1", "abcde", -1);
 }
 
 void testCaseGetDigitByChar(char *testName, char numChar, int expected){
