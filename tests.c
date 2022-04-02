@@ -82,6 +82,7 @@ void testGetNumberByString(){
     testCaseGetNumberByString("\"951516512\" is 951516512", "951516512", 951516512);
     testCaseGetNumberByString("\"0\" is 0", "0", 0);
     testCaseGetNumberByString("\"abcde\" is -1", "abcde", -1);
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetDigitByChar(char *testName, char numChar, int expected){
@@ -95,7 +96,7 @@ void testGetDigitByChar(){
     testCaseGetDigitByChar("\"5\" is 5", '5', 5);
     testCaseGetDigitByChar("\"9\" is 9", '9', 9);
     testCaseGetDigitByChar("\"a\" is -1", 'a', -1);
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testCasePower(char *testName, int base, int expoent, int expected){
@@ -109,7 +110,7 @@ void testPower(){
     testCasePower("10 power 0 is 1", 10, 0, 1);
     testCasePower("2 power 5 is 32", 2, 5, 32);
     testCasePower("11111 power 2 is 123454321", 11111, 2, 123454321);
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetTypeOfChar(char *testName, char token, int expected){
@@ -126,7 +127,7 @@ void testGetTypeOfChar(){
     testCaseGetTypeOfChar("'-' is OPERATOR", '-', OPERATOR);
     testCaseGetTypeOfChar("'*' is OPERATOR", '*', OPERATOR);
     testCaseGetTypeOfChar("'+' is OPERATOR", '+', OPERATOR);
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetStringLength(char *testName, char *string, int expected){
@@ -140,7 +141,7 @@ void testGetStringLength(){
     testCaseGetStringLength("\"\" has length 0", "", 0);
     testCaseGetStringLength("\"Juliano\" has length 7", "Juliano", 7);
     testCaseGetStringLength("\"155+13-12\" has length 9", "155+13-12", 9);
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetOperationResultByParsedExpression(char *testName, char parsedExpression[][100], double expected){
@@ -150,12 +151,7 @@ void testCaseGetOperationResultByParsedExpression(char *testName, char parsedExp
 
 void testGetOperationResultByParsedExpression(){
     printf("%s\n", __func__);
-    testCaseGetOperationResultByParsedExpression("[\"5\",\"+\",\"6\"] is 11.00",(char[3][100]){"5","+","6"}, 11.00);
-    testCaseGetOperationResultByParsedExpression("[\"100\",\"*\",\"2\"] is 200.00",(char[3][100]){"100","*","2"}, 200.00);
-    testCaseGetOperationResultByParsedExpression("[\"100\",\"/\",\"2\"] is 50.00",(char[3][100]){"100","/","2"}, 50.00);
-    testCaseGetOperationResultByParsedExpression("[\"11111\",\"*\",\"11111\"] is 123454321.00",(char[3][100]){"11111","*","11111"}, 123454321.00);
-    testCaseGetOperationResultByParsedExpression("[\"111111\",\"*\",\"111111\"] is 12345654321.00",(char[3][100]){"111111","*","111111"}, 12345654321.00);
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetParsedExpression(char *testName, char *expression, char expected[3][100]){
@@ -171,6 +167,7 @@ void testGetParsedExpression(){
     testCaseGetParsedExpression("\"9584*45\" is [\"9584\",\"*\",\"45\"]", "9584*45", (char[3][100]){"9584","*","45"});
     testCaseGetParsedExpression("\"256 / 3\" is [\"256\",\"/\",\"3\"]", "256 / 3", (char[3][100]){"256","/","3"});
     testCaseGetParsedExpression("\"\" is [\"\",\"\",\"\"]", "", (char[3][100]){"","",""});
+    printf("------------------------------------------------------------\n");
 }
 
 void testCaseGetSubstringByIndex(char *testName, char *expression, int firstIndex, int secondIndex, char *expected){
@@ -185,10 +182,13 @@ void testGetSubstringByIndex(){
     testCaseGetSubstringByIndex("\"150+3\" from index 0 to 2 is \"150\"", "150+3", 0, 2, "150");
     testCaseGetSubstringByIndex("\"8564* 400\" from index 6 to 8 is \"400\"", "8564* 400", 6, 8, "400");
     testCaseGetSubstringByIndex("\"751*8\" from index 3 to 3 is \"*\"", "751*8", 3, 3, "*");
-    printf("--------------------------------------\n");
+    printf("------------------------------------------------------------\n");
 }
 
 void testSuite(){
+    printf("------------------------------------------------------------\n");
+    printf("|                  Running test suite                      |\n");
+    printf("------------------------------------------------------------\n");
     testGetNumberByString();
     testGetDigitByChar();
     testPower();
