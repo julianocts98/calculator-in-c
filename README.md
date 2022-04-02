@@ -38,19 +38,17 @@ Run `main.exe` passing the arguments.
 The following arguments are allowed:
 
 - `"A O B"` -> a string where **A** and **B** are both natural numbers, and **O** is the operator.
+  - The operators available are:
+  - `+` -> add
+  - `-` -> subtract
+  - `*` -> multiply
+  - `/` -> divide
 - `-t` -> runs the test suite.
 
 Examples:
 
-`main.exe "1+2"` should print the result `3`.
-`main.exe -t` should run the test suite.
-
-The only operators available are
-
-- `+` -> add
-- `-` -> subtract
-- `*` -> multiply
-- `/` -> divide
+- `main.exe "1+2"` should print the result `3`.
+- `main.exe -t` should run the test suite.
 
 ## TODO
 
