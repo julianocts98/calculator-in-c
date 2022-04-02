@@ -1,16 +1,13 @@
 #include "main.h"
 #include "tests.h"
 
-//11111*11111 why doesn't it work
 int main(int argc, char *argv[]){
     if (argc == 2){
         if (compareString(argv[1], "-t")){
             testSuite();
             return 0;
         }
-        char parsedExpression[3][100];
-        getParsedExpression(argv[1], parsedExpression);
-        printf("Result: %0.2f", getOperationResultByParsedExpression(parsedExpression));
+        evaluteExpression(argv[1]);
     } else if(argc > 2){
         printf("More than one argument was passed.\nProgram end.");
     } else{
@@ -19,19 +16,19 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-//REFACTOR
-//try to work with conditions and arithmetics dealing with char : '1' - '0' = 49 - 48 = 1;
-int getDigitByChar(char numChar){
-    return ((int)numChar >= 48 && (int)numChar <=57) ? (int)numChar-48 : -1;
+int isValidDigit(char numChar){
+    return ((int)numChar >= (int)'0' && (int)numChar <= (int)'9');
 }
 
-//REFACTOR
-//returns int but the return is never used
-int getParsedExpression(char *expression, char parsedExpression[][100]){
+int checkAndGetDigitByChar(char numChar){
+    return isValidDigit(numChar) ? (int)numChar - (int)'0' : -1;
+}
+
+void getTermsAndOperatorIndexes(char *expression, int indexes[3][2]){
     int startingIdx = -1;
     int endingIdx = -1;
     int expressionLength = getStringLength(expression);
-    int parsedExpressionIdx = 0;
+    int elementIdx = 0;
 
     for (int i = 0; i < expressionLength; i++){
         char actualChar = expression[i];
@@ -39,25 +36,37 @@ int getParsedExpression(char *expression, char parsedExpression[][100]){
         char nextChar = expression[i+1];
         int typeOfNextChar = getTypeOfChar(nextChar);
 
-        //TODO check what happens if more than 3 tokens in arguments of the expression
         if(startingIdx == -1 && typeOfActualChar != INVALID){
             startingIdx = i;
             if(typeOfNextChar != typeOfActualChar){
                 endingIdx = i;
-                getSubstringByIndex(expression, parsedExpression[parsedExpressionIdx], startingIdx, endingIdx);
-                parsedExpressionIdx++;
+                indexes[elementIdx][0] = startingIdx;
+                indexes[elementIdx][1] = endingIdx;
+                elementIdx++;
                 startingIdx = -1;
                 endingIdx = -1;
             }
         }else if(startingIdx != -1 && typeOfNextChar != typeOfActualChar){
             endingIdx = i;
-            getSubstringByIndex(expression, parsedExpression[parsedExpressionIdx], startingIdx, endingIdx);
-            parsedExpressionIdx++;
+            indexes[elementIdx][0] = startingIdx;
+            indexes[elementIdx][1] = endingIdx;
+            elementIdx++;
             startingIdx = -1;
             endingIdx = -1;
         }
     }
-    return 0;
+}
+
+void getParsedExpression(char *expression, char parsedExpression[][100]){
+    int indexes[3][2];
+    getTermsAndOperatorIndexes(expression, indexes);
+    int parsedExpressionIdx = 0;
+
+    for(int i = 0; i < 3; i++){
+        int startingIdx = indexes[i][0];
+        int endingIdx = indexes[i][1];
+        getSubstringByIndex(expression, parsedExpression[i], startingIdx, endingIdx);
+    }
 }
 
 void getSubstringByIndex(char *expression, char *substring, int firstIndex, int secondIndex){
@@ -104,32 +113,41 @@ int power(int base, int expoent){
     }
 }
 
-//REFACTOR
 int getNumberByString(char *string){
     int number = 0;
     int length = getStringLength(string);
     int result = 0;
 
     for (int i = 0, expoent = length-1; i < length; i++, expoent--){
-        result += getDigitByChar(string[i]) * power(10,expoent);
+        int actualDigit = checkAndGetDigitByChar(string[i]);
+        if (actualDigit == -1) return -1;
+        result += actualDigit * power(10,expoent);
     }
     return result;
 }
 
-//study for 11111*11111;
-float getOperationResultByParsedExpression(char parsedExpression[][100]){
-    int firstValue = getNumberByString(parsedExpression[0]);
-    char operator = parsedExpression[1][0];
-    int secondValue = getNumberByString(parsedExpression[2]);
-
+double getOperationResult(double firstValue, char operator, double secondValue){
     switch (operator){
         case '+':
             return firstValue + secondValue;
         case '-':
             return firstValue - secondValue;
         case '*':
-            return firstValue * secondValue;
+            return (double)firstValue * secondValue;
         case '/':
-            return firstValue / secondValue;
+            return (double)firstValue / secondValue;
     }
+}
+
+double evaluateParsedExpression(char parsedExpression[][100]){
+    int firstValue = getNumberByString(parsedExpression[0]);
+    char operator = parsedExpression[1][0];
+    int secondValue = getNumberByString(parsedExpression[2]);
+    return getOperationResult(firstValue, operator, secondValue);
+}
+
+void evaluteExpression(char *expression){
+    char parsedExpression[3][100];
+    getParsedExpression(expression, parsedExpression);
+    printf("Result: %0.2f", evaluateParsedExpression(parsedExpression));
 }
