@@ -170,8 +170,7 @@ void testGetParsedExpression(){
     testCaseGetParsedExpression("\"111   +1\" is [\"111\",\"+\",\"1\"]", "111   +1", (char[3][100]){"111","+","1"});
     testCaseGetParsedExpression("\"9584*45\" is [\"9584\",\"*\",\"45\"]", "9584*45", (char[3][100]){"9584","*","45"});
     testCaseGetParsedExpression("\"256 / 3\" is [\"256\",\"/\",\"3\"]", "256 / 3", (char[3][100]){"256","/","3"});
-    //testCaseGetParsedExpression for empty string
-    printf("--------------------------------------\n");
+    testCaseGetParsedExpression("\"\" is [\"\",\"\",\"\"]", "", (char[3][100]){"","",""});
 }
 
 void testCaseGetSubstringByIndex(char *testName, char *expression, int firstIndex, int secondIndex, char *expected){
