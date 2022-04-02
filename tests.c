@@ -86,7 +86,7 @@ void testGetNumberByString(){
 }
 
 void testCaseGetDigitByChar(char *testName, char numChar, int expected){
-    int actual = getDigitByChar(numChar);
+    int actual = checkAndGetDigitByChar(numChar);
     checkIntTestAndPrintResult(testName, actual, expected);
 }
 
@@ -144,13 +144,18 @@ void testGetStringLength(){
     printf("------------------------------------------------------------\n");
 }
 
-void testCaseGetOperationResultByParsedExpression(char *testName, char parsedExpression[][100], double expected){
-    float actual = getOperationResultByParsedExpression(parsedExpression);
+void testCaseEvaluateParsedExpression(char *testName, char parsedExpression[][100], double expected){
+    double actual = evaluateParsedExpression(parsedExpression);
     checkDoubleTestAndPrintResult(testName, actual, expected);
 }
 
-void testGetOperationResultByParsedExpression(){
+void testEvaluateParsedExpression(){
     printf("%s\n", __func__);
+    testCaseEvaluateParsedExpression("[\"5\",\"+\",\"6\"] is 11.00",(char[3][100]){"5","+","6"}, 11.00);
+    testCaseEvaluateParsedExpression("[\"100\",\"*\",\"2\"] is 200.00",(char[3][100]){"100","*","2"}, 200.00);
+    testCaseEvaluateParsedExpression("[\"100\",\"/\",\"2\"] is 50.00",(char[3][100]){"100","/","2"}, 50.00);
+    testCaseEvaluateParsedExpression("[\"11111\",\"*\",\"11111\"] is 123454321.00",(char[3][100]){"11111","*","11111"}, 123454321.00);
+    testCaseEvaluateParsedExpression("[\"111111\",\"*\",\"111111\"] is 12345654321.00",(char[3][100]){"111111","*","111111"}, 12345654321.00);
     printf("------------------------------------------------------------\n");
 }
 
@@ -194,7 +199,7 @@ void testSuite(){
     testPower();
     testGetTypeOfChar();
     testGetStringLength();
-    testGetOperationResultByParsedExpression();
+    testEvaluateParsedExpression();
     testGetParsedExpression();
     testGetSubstringByIndex();
 }
