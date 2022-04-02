@@ -25,13 +25,25 @@ In the end, to be able to use a simple **switch** for solving the operation, I a
 
 1. Run `gcc -c main.c tests.c` to generate both `main.o` and `tests.o` files.
 2. Compile them to an executable by running `gcc -o main.exe main.o tests.o`
-3. Run `main.exe` passing either a string between parenthesis as an math expresion or the `-t` argument to run the test suite.
+3. Run `main.exe` passing either a string between parenthesis as an math expression.
 
-### Example:
+### Compiling using **make**
 
-Just run: `main.exe "A O B"`, where **A** and **B** are both natural numbers, and **O** is the operator.
+1. Just run `make main` and it will compile everything needed and generate the `main.exe`.
 
-For a literal example: `main.exe "1+2"` should print the result `3`.
+### Using:
+
+Run `main.exe` passing the arguments.
+
+The following arguments are allowed:
+
+- `"A O B"` -> a string where **A** and **B** are both natural numbers, and **O** is the operator.
+- `-t` -> runs the test suite.
+
+Examples:
+
+`main.exe "1+2"` should print the result `3`.
+`main.exe -t` should run the test suite.
 
 The only operators available are
 
